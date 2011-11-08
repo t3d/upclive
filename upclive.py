@@ -1,6 +1,10 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 import os
+
+__license__ = 'GPL 3'
+__copyright__ = '2011, Tomasz Długosz <tomek3d@gmail.com>'
 
 vlc_opts = '--rtsp-tcp --rtsp-wmserver --rtsp-caching=5000 --clock-synchro=0'
 
