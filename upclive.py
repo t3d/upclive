@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
+from PyQt4 import QtGui, QtCore
 
 __license__ = 'GPL 3'
 __copyright__ = '2011, Tomasz Długosz <tomek3d@gmail.com>'
@@ -20,6 +22,45 @@ channels = [
   ('National Geographic', 'rtsp://stream.livetv.chello.pl/NATGEO')
   ]
 
-for channel_name, channel_url in channels:
-	print channel_name, channel_url
-	os.system( vlc_bin + ' ' + vlc_opts + ' ' + channel_url)
+class Interface(QtGui.QWidget):
+    
+    def __init__(self):
+        super(Interface, self).__init__()
+        
+        self.initUI()
+        
+    def initUI(self):
+        
+        #settingsButton = QtGui.QPushButton("Ustawienia")
+        quitButton = QtGui.QPushButton(u'Wyjście')
+
+        hbox = QtGui.QHBoxLayout()
+        #hbox.addWidget(settingsButton)
+        hbox.addStretch(1)
+        hbox.addWidget(quitButton)
+
+        vbox = QtGui.QVBoxLayout()
+        for channel_name, channel_url in channels:
+            btn = QtGui.QPushButton(channel_name)
+            #btn.clicked.connect(os.system( vlc_bin + ' ' + vlc_opts + ' ' + channel_url) )
+            vbox.addWidget(btn)
+        vbox.addStretch(1)
+        vbox.addLayout(hbox)
+        
+        self.setLayout(vbox)    
+
+        quitButton.clicked.connect(QtCore.QCoreApplication.instance().quit)
+        
+        self.setGeometry(100, 300, 100, 150)
+        self.setWindowTitle('upclive')    
+        self.show()
+        
+def main():
+    
+    app = QtGui.QApplication(sys.argv)
+    ex = Interface()
+    sys.exit(app.exec_())
+
+if __name__ == '__main__':
+    main()
+
