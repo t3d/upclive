@@ -8,7 +8,7 @@ from PyQt4 import QtGui, QtCore
 __license__ = 'GPL 3'
 __copyright__ = '2011, Tomasz Długosz <tomek3d@gmail.com>'
 
-vlc_opts = '--rtsp-tcp --rtsp-wmserver --rtsp-caching=5000 --clock-synchro=0'
+vlc_opts = '--rtsp-tcp --rtsp-wmserver --rtsp-caching=5000 --clock-synchro=0  --aspect-ratio=16:9'
 
 vlc_bin = 'vlc'
 
