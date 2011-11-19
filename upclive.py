@@ -12,15 +12,15 @@ vlc_opts = '--rtsp-tcp --rtsp-wmserver --rtsp-caching=5000 --clock-synchro=0'
 
 vlc_bin = 'vlc'
 
-channels = [
-  ('Animal Planet', 'rtsp://stream.livetv.chello.pl/Animal'),
-  ('Discovery', 'rtsp://stream.livetv.chello.pl/Discovery'),
-  ('CNN', 'rtsp://stream.livetv.chello.pl/CNN'),
-  ('TVN 24', 'rtsp://stream.livetv.chello.pl/TVN24'),
-  ('Mini Mini', 'rtsp://stream.livetv.chello.pl/MiniMini'),
-  ('teletoon+', 'rtsp://stream.livetv.chello.pl/ZigZap'),
-  ('National Geographic', 'rtsp://stream.livetv.chello.pl/NATGEO')
-  ]
+channels = {
+  'Animal Planet':'rtsp://stream.livetv.chello.pl/Animal',
+  'Discovery':'rtsp://stream.livetv.chello.pl/Discovery',
+  'CNN':'rtsp://stream.livetv.chello.pl/CNN',
+  'TVN 24':'rtsp://stream.livetv.chello.pl/TVN24',
+  'Mini Mini':'rtsp://stream.livetv.chello.pl/MiniMini',
+  'teletoon+':'rtsp://stream.livetv.chello.pl/ZigZap',
+  'National Geographic':'rtsp://stream.livetv.chello.pl/NATGEO'
+  }
 
 class Interface(QtGui.QWidget):
     
@@ -29,6 +29,15 @@ class Interface(QtGui.QWidget):
         
         self.initUI()
         
+    def play(self):
+        sender = self.sender()
+        channel_name = sender.text()
+        print channel_name
+        url = channels[str(channel_name)]
+        print url
+
+        os.system(vlc_bin + ' ' + vlc_opts + ' ' + url)
+
     def initUI(self):
         
         #settingsButton = QtGui.QPushButton("Ustawienia")
@@ -40,9 +49,9 @@ class Interface(QtGui.QWidget):
         hbox.addWidget(quitButton)
 
         vbox = QtGui.QVBoxLayout()
-        for channel_name, channel_url in channels:
+        for channel_name in channels.keys():
             btn = QtGui.QPushButton(channel_name)
-            #btn.clicked.connect(os.system( vlc_bin + ' ' + vlc_opts + ' ' + channel_url) )
+            btn.clicked.connect(self.play)
             vbox.addWidget(btn)
         vbox.addStretch(1)
         vbox.addLayout(hbox)
