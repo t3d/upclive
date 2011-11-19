@@ -17,8 +17,8 @@ channels = {
   'Discovery':'rtsp://stream.livetv.chello.pl/Discovery',
   'CNN':'rtsp://stream.livetv.chello.pl/CNN',
   'TVN 24':'rtsp://stream.livetv.chello.pl/TVN24',
-  'Mini Mini':'rtsp://stream.livetv.chello.pl/MiniMini',
-  'teletoon+':'rtsp://stream.livetv.chello.pl/ZigZap',
+  'MiniMini+':'rtsp://stream.livetv.chello.pl/MiniMini',
+  'teleTOON+':'rtsp://stream.livetv.chello.pl/ZigZap',
   'National Geographic':'rtsp://stream.livetv.chello.pl/NATGEO'
   }
 
